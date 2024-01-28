@@ -1,0 +1,47 @@
+<nav class="navbar">
+<div class="container-fluid">
+    <span class="navbar-brand pd-3">
+    <img class="logo" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAy0lEQVR4nO2WTQoCMQxG37gePYUuBA8iuvBAomvvoqCHcSF4B8UDaIZCFkOh2D/oKH1QKAOh3yRf0kKlMiAk8/pdAalUAWJl0rtE8q8CbKoAqSWgmpCBt6E4BsYMuGa4jKIErIBHptvQO9Oiaw+8dX8EWp/gnAIE+AAHYJR4eJSAF7DRbxPg8iX1N2Du+JGgB4uo6Yz5DAvg7ln/J7BOFXAGxoRh/HHSA4xvdint3cQEady2Z9xc8yWYpdW6RZj2hlcxWvVFUZrSApx05uTdqWJaLH8AAAAASUVORK5CYII=" alt="logo"/>
+    Let's chat</span>
+    <button class="menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <img width="40" height="36" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAT0lEQVR4nO3WwQkAIAwDwIzezesWKuEO8jf4aBIAHpmSZEuS1w9QJK0/MiUBAPLBRTbj0zoatySpKTIlAQDywUU249M6GrckqSkyJQEg1x3OPOvHECpbTAAAAABJRU5ErkJggg==" alt="menu"/>
+    </button>
+    <div class="offcanvas offcanvas-end dark-text" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title" id="offcanvasNavbarLabel">Меню</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link dark-text big-link" aria-current="page" href="{% url 'logout-user' %}">{{ user.get_username }}</a>
+                            <form action="{% url 'login-user' %}" method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <input type="submit" class="nav-link dark-text big-link" value="Выйти">
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link dark-text big-link" aria-current="page" href="{% url 'login-user' %}">Вход</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dark-text big-link" aria-current="page" href="/">Регистрация</a>
+                        </li>
+                    {% endif %}
+                <hr>
+                <li class="nav-item">
+                    <a class="nav-link dark-text big-link" aria-current="page" href="/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dark-text big-link" aria-current="page" href="/main/polls/1">Mess</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dark-text big-link" aria-current="page" href="/">New</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>
