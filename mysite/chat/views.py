@@ -15,7 +15,7 @@ def checkTest(request):
 
 def my_ajax_view(request):
     if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        field1_value = request.POST.get('field1')
+        field1_value = request.POST.get('getRoomID')
         data = {
             'message': 'Данные успешно отправлены!'
         }
